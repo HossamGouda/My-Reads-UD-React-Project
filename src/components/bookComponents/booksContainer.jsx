@@ -1,16 +1,17 @@
-import React, { Component } from "react"
-import Read from "./bookStatus/readShelf"
-import WantToRead from "./bookStatus/wantRead"
-import CurrentlyRead from "./bookStatus/CurrentlyRead"
-import OpenSearch from "./openSearch"
-import propTypes from "prop-types"
+import React, { Component } from "react";
+import Read from "./bookStatus/readShelf";
+import WantToRead from "./bookStatus/wantRead";
+import CurrentlyRead from "./bookStatus/CurrentlyRead";
+import OpenSearch from "./openSearch";
+import propTypes from "prop-types";
 
 class BooksContainer extends Component {
   static propTypes = {
     books: propTypes.array.isRequired,
-  }
+  };
 
   render() {
+    const { books, controlChelf } = this.props;
     return (
       <React.Fragment>
         <div className="list-books">
@@ -18,17 +19,18 @@ class BooksContainer extends Component {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            {console.log(this.props.books)}
-            <Read books={this.props.books} />
-            <WantToRead books={this.props.books} />
-            <CurrentlyRead books={this.props.books} />
+            {console.log(books)}
+            <CurrentlyRead books={books} controlChelf={controlChelf} />
+            <Read books={books} controlChelf={controlChelf} />
+            <WantToRead books={books} controlChelf={controlChelf} />
+
             <div />
           </div>
           <OpenSearch />
         </div>
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default BooksContainer
+export default BooksContainer;

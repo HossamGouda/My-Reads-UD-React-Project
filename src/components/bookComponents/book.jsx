@@ -1,13 +1,11 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 
 class Book extends Component {
-  state = { value: "" }
+  state = { value: "" };
 
-  handleshelf = (e) => {
-    //set state
-    this.setState({ shelf: e.target.value })
-  }
   render() {
+    const { controlChelf } = this.props;
+
     return (
       <div className="book">
         <div className="book-top">
@@ -20,7 +18,10 @@ class Book extends Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select value={this.state.value} onChange={this.handleshelf}>
+            <select
+              value={(e) => e.traget.value}
+              onChange={(e) => this.controlChelf(e, e.target.value)}
+            >
               <option value="move" disabled>
                 Move to...
               </option>
@@ -34,8 +35,8 @@ class Book extends Component {
         <div className="book-title">{this.props.title}</div>
         <div className="book-authors">{this.props.authors}</div>
       </div>
-    )
+    );
   }
 }
 
-export default Book
+export default Book;
