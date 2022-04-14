@@ -15,8 +15,9 @@ class Main extends Component {
       this.setState(() => ({ books }));
     });
   }
+
   handleshelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((res) => book.shelf);
+    BooksAPI.update(book, shelf).then((book) => book.shelf);
     this.setState({ books: book.shef });
   };
 

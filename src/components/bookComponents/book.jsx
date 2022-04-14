@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+import * as BooksAPI from "../../BooksAPI";
 
 class Book extends Component {
   state = { value: "" };
 
-  render() {
-    const { controlChelf } = this.props;
+  setShelf = async (e) => {
+    const shelf = e.target.value;
+    const books = this.props;
+    const res = await BooksAPI.update(books, shelf);
+    console.log(res);
+  };
 
+  render() {
     return (
       <div className="book">
         <div className="book-top">
@@ -18,10 +24,7 @@ class Book extends Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select
-              value={(e) => e.traget.value}
-              onChange={(e) => this.controlChelf(e, e.target.value)}
-            >
+            <select onChange={this.setShelf}>
               <option value="move" disabled>
                 Move to...
               </option>

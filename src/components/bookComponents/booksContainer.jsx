@@ -11,7 +11,7 @@ class BooksContainer extends Component {
   };
 
   render() {
-    const { books, controlChelf } = this.props;
+    const { books, controlChelf, changeshelf } = this.props;
     return (
       <React.Fragment>
         <div className="list-books">
@@ -20,7 +20,11 @@ class BooksContainer extends Component {
           </div>
           <div className="list-books-content">
             {console.log(books)}
-            <CurrentlyRead books={books} controlChelf={controlChelf} />
+            <CurrentlyRead
+              books={books}
+              controlChelf={controlChelf}
+              changeshelf={changeshelf}
+            />
             <Read books={books} controlChelf={controlChelf} />
             <WantToRead books={books} controlChelf={controlChelf} />
 
