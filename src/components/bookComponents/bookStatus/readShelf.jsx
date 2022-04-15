@@ -4,12 +4,13 @@ import Book from "../book"
 class Read extends Component {
   state = {}
   render() {
+    const { books, onSetshelf } = this.props
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">Read</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {this.props.books
+            {books
               .filter((book) => book.shelf === "read")
               .map((book) => (
                 <li key={book.id}>
@@ -17,8 +18,10 @@ class Read extends Component {
                     title={book.title}
                     thumbnail={book.imageLinks.thumbnail}
                     authors={book.authors}
-                    books={this.props.books}
-                    onSelect={this.props.onSelect}
+                    book={book}
+                    shelf={book.shelf}
+                    bookList={books}
+                    onSetshelf={onSetshelf}
                   />
                 </li>
               ))}

@@ -1,17 +1,13 @@
-import React, { Component } from "react";
-import * as BooksAPI from "../../BooksAPI";
-
+import React, { Component } from "react"
+import Options from "./bookOptions"
 class Book extends Component {
-  state = { value: "" };
-
-  setShelf = async (e) => {
-    const shelf = e.target.value;
-    const books = this.props;
-    const res = await BooksAPI.update(books, shelf);
-    console.log(res);
-  };
-
+  // changeListener = (e) => {
+  //   const book = this.props.book
+  //   this.props.onSetshelf(book, e.target.value)
+  // }
   render() {
+    const { shelf, title, authors, thumbnail, onSetshelf } = this.props
+
     return (
       <div className="book">
         <div className="book-top">
@@ -20,11 +16,11 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${this.props.thumbnail})`,
+              backgroundImage: `url(${thumbnail})`,
             }}
           />
           <div className="book-shelf-changer">
-            <select onChange={this.setShelf}>
+            {/* <select onChange={this.changeListener} value={shelf}>
               <option value="move" disabled>
                 Move to...
               </option>
@@ -32,14 +28,19 @@ class Book extends Component {
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
               <option value="none">None</option>
-            </select>
+            </select> */}
+            <Options
+              shelf={shelf}
+              onSetshelf={onSetshelf}
+              book={this.props.book}
+            />
           </div>
         </div>
-        <div className="book-title">{this.props.title}</div>
-        <div className="book-authors">{this.props.authors}</div>
+        <div className="book-title">{title}</div>
+        <div className="book-authors">{authors}</div>
       </div>
-    );
+    )
   }
 }
 
-export default Book;
+export default Book
