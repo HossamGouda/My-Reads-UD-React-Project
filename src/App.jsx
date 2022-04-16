@@ -29,11 +29,11 @@ class App extends Component {
         this.setState({ queryBooks: [] })
         this.setState({ query: "" })
       }
-      return
     } catch (error) {
       this.setState({ errors: error })
       console.log(`This is Error from Search term :${error}`)
     }
+    return
   }
 
   componentDidMount() {
