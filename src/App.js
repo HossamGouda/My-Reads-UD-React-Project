@@ -3,7 +3,6 @@ import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import * as BooksAPI from "./BooksAPI"
 import BooksContainer from "./components/bookComponents/booksContainer"
-// import escapeStringRegexp from "escape-string-regexp"
 import Search from "./pages/search"
 
 class App extends Component {
@@ -19,8 +18,19 @@ class App extends Component {
       if (event.length > 0) {
         await this.setState({ query: event.trim().toLowerCase() })
         await BooksAPI.search(this.state.query).then((books) => {
+          const withShelfValues = books.map((book) => {
+            this.state.books.map((localBook) => {
+              if (book.id === localBook.id) {
+                book.shelf = localBook.shelf
+              }
+              return book
+            })
+            return
+          })
+          console.log(books)
           if (books.length > 0) {
-            this.setState({ queryBooks: books })
+            this.setState({ queryBooks: withShelfValues })
+            console.log("query books", this.state.queryBooks)
           } else {
             this.setState({ queryBooks: [] })
           }
@@ -87,6 +97,7 @@ class App extends Component {
             element={
               <BooksContainer
                 books={this.state.books}
+                book={this.state.books.map((book) => book)}
                 setShelf={this.handleShelf}
               />
             }

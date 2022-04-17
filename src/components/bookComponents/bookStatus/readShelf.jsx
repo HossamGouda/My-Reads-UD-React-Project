@@ -16,7 +16,11 @@ class Read extends Component {
                 <li key={book.id}>
                   <Book
                     title={book.title}
-                    thumbnail={book.imageLinks.thumbnail}
+                    thumbnail={
+                      book.imageLinks && book.imageLinks.thumbnail
+                        ? book.imageLinks.thumbnail
+                        : ""
+                    }
                     authors={book.authors}
                     book={book}
                     shelf={book.shelf}

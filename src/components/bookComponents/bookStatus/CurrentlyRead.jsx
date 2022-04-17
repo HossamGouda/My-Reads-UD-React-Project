@@ -5,6 +5,7 @@ class CurrentlyRead extends Component {
   state = {}
   render() {
     const { books, onSetshelf } = this.props
+
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">Currently Reading</h2>
@@ -16,7 +17,11 @@ class CurrentlyRead extends Component {
                 <li key={book.id}>
                   <Book
                     title={book.title}
-                    thumbnail={book.imageLinks.thumbnail}
+                    thumbnail={
+                      book.imageLinks && book.imageLinks.thumbnail
+                        ? book.imageLinks.thumbnail
+                        : ""
+                    }
                     authors={book.authors}
                     book={book}
                     shelf={book.shelf}

@@ -25,7 +25,11 @@ class Search extends Component {
               <Book
                 key={book.id}
                 title={book.title}
-                thumbnail={book.imageLinks.thumbnail}
+                thumbnail={
+                  book.imageLinks && book.imageLinks.thumbnail
+                    ? book.imageLinks.thumbnail
+                    : ""
+                }
                 authors={book.authors}
                 book={book}
                 shelf={book.shelf}

@@ -19,7 +19,6 @@ class BooksContainer extends Component {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            {console.log(books)}
             <CurrentlyRead books={books} onSetshelf={setShelf} />
             <Read books={books} onSetshelf={setShelf} />
             <WantToRead books={books} onSetshelf={setShelf} />
