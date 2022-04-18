@@ -18,19 +18,14 @@ class App extends Component {
       if (event.length > 0) {
         await this.setState({ query: event.trim().toLowerCase() })
         await BooksAPI.search(this.state.query).then((books) => {
-          const withShelfValues = books.map((book) => {
-            this.state.books.map((localBook) => {
-              if (book.id === localBook.id) {
-                book.shelf = localBook.shelf
-              }
+          if (books.length > 0) {
+            books.map((book) => {
+              let localBooks = this.state.books.find((b) => b.id === book.id)
+              book.shelf = localBooks ? localBooks.shelf : "none"
               return book
             })
-            return
-          })
-          console.log(books)
-          if (books.length > 0) {
-            this.setState({ queryBooks: withShelfValues })
-            console.log("query books", this.state.queryBooks)
+
+            this.setState({ queryBooks: books })
           } else {
             this.setState({ queryBooks: [] })
           }
